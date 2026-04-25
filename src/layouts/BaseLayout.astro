@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import Header from '@components/Header.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -17,14 +19,59 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<slot />
+	  <div class="container">
+		  <div class="header"><Header /></div>
+      <div class="sidebar">sidebar</div>
+      <div class="main">Main</div>
+      <div class="footer">Footer</div>
+	  </div>
 	</body>
 </html>
 
 <style>
 	html,
-	body {
+  body {
+    
 		margin: 0;
 		width: 100%;
-		height: 100%;
-	}
+    height: 100%;
+  }  
+    
+    
+  .header {
+    grid-area: head;
+    background-color: yellow;
+  }
+  
+  .sidebar {
+    grid-area: menu;
+    background-color: red;
+  }
+
+  .main {
+    grid-area: center;
+    background-color: gray;
+  }
+
+  .footer {
+    grid-area: foot;
+    background-color: blue;
+  }
+
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "head head head"
+      "menu center center"
+      "foot foot foot";
+  } 
+  
+  
+  
+
+	
 </style>
